@@ -2,13 +2,16 @@
 #include<vector>
 using namespace std;
 
+//new data structure
 class SET{
 public:
     vector<int> data;
+
     //constructor called
     SET(vector<int> data={}){
         this->data=data;
     }
+
     //sorting
     void quick_Sort(int l, int r) {
         if (l >= r){
@@ -18,6 +21,7 @@ public:
         quick_Sort(l, p - 1);
         quick_Sort(p + 1, r);
     }
+
     int part(int l, int r) {
         int p_value = data[r];
         int i = l - 1;
@@ -34,7 +38,8 @@ public:
         data[r] = temp;
         return i + 1;
     }
-    //determines if element is already present or not
+
+    //checking presence of element
     bool presentIn(int x) const {
         for (int i : this-> data){
             if(i==x){
@@ -43,13 +48,14 @@ public:
         }
         return false;
     }
-    //Insert
+    //Insertion function
     void Insert(int data){ 
         if(!presentIn(data)){
             this-> data.push_back(data);
         }   
     }
-    //Delete
+
+    //Deletion function
     int Delete(int data){
         if(!presentIn(data)){
             return this->data.size();
@@ -64,7 +70,8 @@ public:
             return this->data.size();
         } 
     }
-    //belongsto
+
+    //belongsto function
     int belongsto(int data){ 
         int s = (this->data).size();
         int ans = 0;
@@ -77,17 +84,20 @@ public:
         return ans;
 
     }
-    //size
+
+    //size function
     int size(){
         return this->data.size();
     }
-    //union
+
+    //union function
     void Union(const SET& set2) {
         for(int i : set2.data){
             Insert(i);
         }
     }
-    //intersection
+
+    //intersection function
     void Intersection(const SET& set2){
         vector<int> final;
         for(int i : data){
@@ -98,7 +108,7 @@ public:
         data = final;
     }
     
-    //difference
+    //difference function
     void Difference(const SET& set2) {
         vector<int> final;
         for(int i : data){
@@ -108,7 +118,8 @@ public:
         }
         data = final;
     }
-    //symmetricdifference
+
+    //symmetricdifference function
     void SymmetricDifference(const SET& set2) {
         vector<int> final;
         for(int i : data){
@@ -123,7 +134,8 @@ public:
         }
         data = final;
     }
-    //print
+
+    //print function
     void Print() {
         if (!data.empty()) {
             for (int i = 0; i < data.size() - 1; i++) {
@@ -134,9 +146,12 @@ public:
         cout << endl;
     }
 };
+
+
 int main(){
     vector<SET> sets;
-    // creating cases which command no. corresponds to which operation
+    //test cases
+    
     int comm_no, set_no, data;
     while (cin >> comm_no) {
         if (comm_no == 1) {
